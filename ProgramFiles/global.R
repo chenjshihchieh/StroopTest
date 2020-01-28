@@ -8,16 +8,9 @@ conQs <- config[config$parameter == "congruentQuestions", 2]
 inconQs <- config[config$parameter == "incongruentQuestions", 2]
 ConsentForm <- config[config$parameter == "showConsentForm", 2]
 
+#Configuration choices
+config.choices <- list.files("www/")[!str_detect(list.files("www/"), ".csv|.css|icons")]
 
-
-#Load in a data table that contains question information:
-#Category(Congruent/Incongruent), Filepath to image, image file name, Word of stimuli, image of stimuli
-#Load in a different csv file depending on the test type
-if(testType == 1){
-questioninfo <- read.csv(file.path("www", "stroopInfo.csv"), stringsAsFactors = FALSE)
-}else if (testType == 2){
-  return()
-}
 
 #Loading in previous participant data
 #If none are present, create a new one
