@@ -1,7 +1,7 @@
 #### Load in the necessary elements
 
 #Load in the configuration file
-config <- read.csv(file.path("www", "config.csv"))
+config <- read.csv(file.path("www", "config.csv"), stringsAsFactors = FALSE)
 #Saving parameters to variables
 testType <- config[config$parameter == "testType", 2]
 conQs <- config[config$parameter == "congruentQuestions", 2]

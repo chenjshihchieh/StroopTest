@@ -9,5 +9,4 @@ for(i in necessary_packages){
 
 rm(i, necessary_packages)
 
-
 runApp()

@@ -43,7 +43,7 @@ function(input, output){
     }else if(rv$transition > 1){
       ##The stroop test itself    
       list(
-        imageOutput("Image", width = "400px", height = "300px"),
+        
         actionButton("red", "Red"),
         actionButton("blue", "Blue"),
         actionButton("yellow", "Yellow"),
@@ -107,22 +107,13 @@ function(input, output){
   #Category(Congruent/Incongruent), Filepath to image, image file name, 
   #Word of stimuli, image of stimuli
   #Load in a different csv file depending on the test type
-  
-  observe({
-    if(input$start == 1){
-      questioninfo <- read.csv(paste(c(testType, ".csv")))
-    }
-  })
-  
+
   
   # This generates the image based on the current question
-  output$Image <- renderImage(file.path(c(testType, questioninfo$Paths[rv$Qnumber])), 
-                              deleteFile = FALSE)
-   
-}
+
   
   #### Render functions for output elements other than UI rendering
   ## Creating the element to allow transition() function to be called
-  
+}
   
     
