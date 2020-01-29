@@ -43,7 +43,7 @@ function(input, output){
     }else if(rv$transition > 1){
       ##The stroop test itself    
       list(
-        
+        tableOutput("test"),
         actionButton("red", "Red"),
         actionButton("blue", "Blue"),
         actionButton("yellow", "Yellow"),
@@ -107,7 +107,15 @@ function(input, output){
   #Category(Congruent/Incongruent), Filepath to image, image file name, 
   #Word of stimuli, image of stimuli
   #Load in a different csv file depending on the test type
-
+  observe({
+    value <- input$start
+    if(value == 1){
+      questionInfo <<- read.csv(file.path("www", "stroopWord.csv"), stringsAsFactors = FALSE)
+      
+    }
+  })
+    
+  output$test <- renderTable(questionInfo)
   
   # This generates the image based on the current question
 
