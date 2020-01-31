@@ -27,7 +27,7 @@ function(input, output){
       
     ##Configuration page for varios test configurations
       #Radio buttons for the various stroop choices
-      list(radioButtons("configChoices", "Select the type of Stroop:", 
+      list(radioButtons("testChoices", "Select the type of Stroop:", 
                         choices = config.choices, 
                         inline = TRUE),
       #Number of congruent questions
@@ -44,6 +44,7 @@ function(input, output){
       ##The stroop test itself    
       list(
         tableOutput("test"),
+        textOutput("test2"),
         actionButton("red", "Red"),
         actionButton("blue", "Blue"),
         actionButton("yellow", "Yellow"),
@@ -61,12 +62,7 @@ function(input, output){
   ##Setting up the events for transitioning different pages
   #Transitioning to the configuration page
   observeEvent(input$config, rv$configuration <- !rv$configuration)
-  observeEvent(input$save, {
-    testType <- input$configChoices
-    conQs <- input$congruentQs
-    inconQs <- input$incongruentQs
-    rv$configuration <- !rv$configuration
-    })
+
   #General transition to different pages
   observeEvent(input$start, rv$transition <- rv$transition +1)
   #Transitioning throught the stroop questions
@@ -102,6 +98,28 @@ function(input, output){
       }else if(input$start > 1|!rv$configuration)shinyjs::show("start")
   })
   
+  ###Configurations Functions
+  ##Something to trigger when the saved button is pressed
+ 
+  observeEvent(input$save, {
+    #testChoices saved to testType
+    testType <- input$testChoices
+    
+    #CongruentQs saved to conQs
+    conQs <- input$congruentQs
+    
+    #incongruentQs saved to inconQs
+    inconQs <- input$incongruentQs
+    
+    #Pressing the save button will save the configuration to config.csv
+    newValues <- c(testType, conQs, inconQs, 0)
+    configuration$values <<- newValues
+    write.csv(configuration, file.path("www", "config.csv"), row.names = FALSE)
+    rv$configuration <- !rv$configuration
+  })
+  
+
+  
   ##Reading information for the relevant questions
   #Load in a data table that contains question information:
   #Category(Congruent/Incongruent), Filepath to image, image file name, 
@@ -116,7 +134,7 @@ function(input, output){
   })
     
   output$test <- renderTable(questionInfo)
-  
+  output$test2 <- renderText(paste(questionInfo$Paths[rv$Qnumber]))
   # This generates the image based on the current question
 
   

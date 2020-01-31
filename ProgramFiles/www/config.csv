@@ -1,5 +1,5 @@
-parameters,values
-testType,stroopWord
-congruentQuestions,10
-incongruentQuestions,10
-showConsentForm,0
+"parameters","values"
+"testType","stroopWord"
+"congruentQuestions","25"
+"incongruentQuestions","25"
+"showConsentForm","0"

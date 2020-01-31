@@ -1,12 +1,12 @@
 #### Load in the necessary elements
 
 #Load in the configuration file
-config <- read.csv(file.path("www", "config.csv"), stringsAsFactors = FALSE)
+configuration <- read.csv(file.path("www", "config.csv"), stringsAsFactors = FALSE)
 #Saving parameters to variables
-testType <- config[config$parameter == "testType", 2]
-conQs <- config[config$parameter == "congruentQuestions", 2]
-inconQs <- config[config$parameter == "incongruentQuestions", 2]
-ConsentForm <- config[config$parameter == "showConsentForm", 2]
+testType <- configuration[config$parameter == "testType", 2]
+conQs <- config[configuration$parameter == "congruentQuestions", 2]
+inconQs <- config[configuration$parameter == "incongruentQuestions", 2]
+ConsentForm <- config[configuration$parameter == "showConsentForm", 2]
 
 #Configuration choices
 config.choices <- list.files("www/")[!str_detect(list.files("www/"), ".csv|.css|icons")]
