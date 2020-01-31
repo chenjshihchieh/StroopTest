@@ -4,8 +4,8 @@
 configuration <- read.csv(file.path("www", "config.csv"), stringsAsFactors = FALSE)
 #Saving parameters to variables
 testType <- configuration[config$parameter == "testType", 2]
-conQs <- config[configuration$parameter == "congruentQuestions", 2]
-inconQs <- config[configuration$parameter == "incongruentQuestions", 2]
+conQs <- as.numeric(config[configuration$parameter == "congruentQuestions", 2])
+inconQs <- as.numeric(config[configuration$parameter == "incongruentQuestions", 2])
 ConsentForm <- config[configuration$parameter == "showConsentForm", 2]
 
 #Configuration choices

@@ -40,11 +40,11 @@ function(input, output){
     }else if(rv$transition == 1){
         list(h2("Where the stroop test starts, Some instructions for the test"))
     
-    }else if(rv$transition > 1){
+    }else if(rv$Qnumber >= 1 & rv$Qnumber <= conQs + inconQs){
       ##The stroop test itself    
       list(
         tableOutput("test"),
-        textOutput("test2"),
+        imageOutput("stroopImage"),
         actionButton("red", "Red"),
         actionButton("blue", "Blue"),
         actionButton("yellow", "Yellow"),
@@ -106,10 +106,10 @@ function(input, output){
     testType <- input$testChoices
     
     #CongruentQs saved to conQs
-    conQs <- input$congruentQs
+    conQs <- as.numeric(input$congruentQs)
     
     #incongruentQs saved to inconQs
-    inconQs <- input$incongruentQs
+    inconQs <- as.numeric(input$incongruentQs)
     
     #Pressing the save button will save the configuration to config.csv
     newValues <- c(testType, conQs, inconQs, 0)
@@ -117,9 +117,7 @@ function(input, output){
     write.csv(configuration, file.path("www", "config.csv"), row.names = FALSE)
     rv$configuration <- !rv$configuration
   })
-  
 
-  
   ##Reading information for the relevant questions
   #Load in a data table that contains question information:
   #Category(Congruent/Incongruent), Filepath to image, image file name, 
@@ -130,12 +128,36 @@ function(input, output){
     if(value == 1){
       questionInfo <<- read.csv(file.path("www", "stroopWord.csv"), stringsAsFactors = FALSE)
       
+      ### Creating a randomized series of questions and saving them
+      #Pull out the index where the congruent images are at
+      congruentIndex <- str_which(questionInfo$Category, "Congruent")
+      
+      #Pull out the index where the incongruent images are at
+      incongruentIndex <- str_which(questionInfo$Category, "Incongruent")
+      
+      #Creating a pool of index to randomize from
+      index_pool <- c(sample(congruentIndex, conQs, replace = TRUE), 
+                         sample(incongruentIndex, inconQs, replace = TRUE))
+      
+      #Randomizing the congruent and incongruent question index
+      questionIndex <- sample(index_pool, conQs + inconQs, replace = FALSE)
+      
+      #Creating the table
+      question_pool <<- questionInfo[questionIndex,]
+      
     }
   })
     
-  output$test <- renderTable(questionInfo)
-  output$test2 <- renderText(paste(questionInfo$Paths[rv$Qnumber]))
+  output$test <- renderTable(question_pool)
+  
   # This generates the image based on the current question
+  output$stroopImage <- renderImage({
+    files_list <- paste(testType, question_pool$Paths[rv$Qnumber], question_pool$Images[rv$Qnumber])
+    files_split <- unlist(str_split(files_list, " ", n = 4))
+    image.path <- file.path("www", files_split[1], files_split[2], files_split[3], files_split[4])
+    list(src = image.path, border = "0", align = "center")
+    }, deleteFile = FALSE)
+
 
   
   #### Render functions for output elements other than UI rendering
