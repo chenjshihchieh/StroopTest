@@ -3,10 +3,10 @@
 #Load in the configuration file
 configuration <- read.csv(file.path("www", "config.csv"), stringsAsFactors = FALSE)
 #Saving parameters to variables
-testType <- configuration[config$parameter == "testType", 2]
-conQs <- as.numeric(config[configuration$parameter == "congruentQuestions", 2])
-inconQs <- as.numeric(config[configuration$parameter == "incongruentQuestions", 2])
-ConsentForm <- config[configuration$parameter == "showConsentForm", 2]
+testType <- configuration[configuration$parameter == "testType", 2]
+conQs <- as.numeric(configuration[configuration$parameter == "congruentQuestions", 2])
+inconQs <- as.numeric(configuration[configuration$parameter == "incongruentQuestions", 2])
+ConsentForm <- configuration[configuration$parameter == "showConsentForm", 2]
 
 #Configuration choices
 config.choices <- list.files("www/")[!str_detect(list.files("www/"), ".csv|.css|icons")]
@@ -36,3 +36,11 @@ if(file.exists(datapath)){
   )()
   
 }
+
+
+##Creating the dataframe for entering the data
+saved_dat <- data.frame(
+  conCorrect = 0, inconCorrect = 0,
+  totalCorrect = 0, numOfConQs = 0,
+  numOfInconQs = 0, totalNumOfQs = 0
+)
