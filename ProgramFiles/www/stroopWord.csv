@@ -1,17 +1,17 @@
-"Category","Paths","Images","Word","Colour"
-"Congruent","Resized Congruent","resized-img0.png","Red","Red"
-"Congruent","Resized Congruent","resized-img10.png","Green","Green"
-"Congruent","Resized Congruent","resized-img13.png","Blue","Blue"
-"Congruent","Resized Congruent","resized-img7.png","Yellow","Yellow"
-"Incongruent","Resized Incongruent","resized-img1.png","Blue","Red"
-"Incongruent","Resized Incongruent","resized-img11.png","Yellow","Green"
-"Incongruent","Resized Incongruent","resized-img12.png","Red","Blue"
-"Incongruent","Resized Incongruent","resized-img14.png","Green","Blue"
-"Incongruent","Resized Incongruent","resized-img15.png","Yellow","Blue"
-"Incongruent","Resized Incongruent","resized-img2.png","Green","Red"
-"Incongruent","Resized Incongruent","resized-img3.png","Yellow","Red"
-"Incongruent","Resized Incongruent","resized-img4.png","Red","Yellow"
-"Incongruent","Resized Incongruent","resized-img5.png","Blue","Yellow"
-"Incongruent","Resized Incongruent","resized-img6.png","Green","Yellow"
-"Incongruent","Resized Incongruent","resized-img8.png","Red","Green"
-"Incongruent","Resized Incongruent","resized-img9.png","Blue","Green"
+Category,Paths,Names,Word,Image
+Congruent,Resized Congruent,resized-img0.png,Red,Red
+Congruent,Resized Congruent,resized-img10.png,Green,Green
+Congruent,Resized Congruent,resized-img13.png,Blue,Blue
+Congruent,Resized Congruent,resized-img7.png,Yellow,Yellow
+Incongruent,Resized Incongruent,resized-img1.png,Blue,Red
+Incongruent,Resized Incongruent,resized-img11.png,Yellow,Green
+Incongruent,Resized Incongruent,resized-img12.png,Red,Blue
+Incongruent,Resized Incongruent,resized-img14.png,Green,Blue
+Incongruent,Resized Incongruent,resized-img15.png,Yellow,Blue
+Incongruent,Resized Incongruent,resized-img2.png,Green,Red
+Incongruent,Resized Incongruent,resized-img3.png,Yellow,Red
+Incongruent,Resized Incongruent,resized-img4.png,Red,Yellow
+Incongruent,Resized Incongruent,resized-img5.png,Blue,Yellow
+Incongruent,Resized Incongruent,resized-img6.png,Green,Yellow
+Incongruent,Resized Incongruent,resized-img8.png,Red,Green
+Incongruent,Resized Incongruent,resized-img9.png,Blue,Green
