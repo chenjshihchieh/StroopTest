@@ -9,4 +9,4 @@ for(i in necessary_packages){
 
 rm(i, necessary_packages)
 
-runApp()
+runApp(host = "0.0.0.0", port = 5050)
