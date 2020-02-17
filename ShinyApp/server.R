@@ -283,8 +283,8 @@ function(input, output, session){
     unused2 <- input$word3
     unused3 <- input$word4
     data.frame(
-      conTime = mean(reactTime$Reaction_Time[reactTime$Category == "Congruent"], na.rm = TRUE),
-      inconTime = mean(reactTime$Reaction_Time[reactTime$Category == "Incongruent"], na.rm = TRUE)
+      Average_Congruent_Time = mean(reactTime$Reaction_Time[reactTime$Category == "Congruent"], na.rm = TRUE),
+      Average_Incongruent_Time = mean(reactTime$Reaction_Time[reactTime$Category == "Incongruent"], na.rm = TRUE)
     )
   })
   
